@@ -14,7 +14,7 @@ for (int i = 1; i <= n; i++)
 }
 ```
 > **Note:**
-> - Besides `int`, `short`, `long`, `long long`, BigInteger is also capable to accept string initialization like this:
+> - Besides `int`, `short`, `long`, `long long` and so on, BigInteger is also capable to accept string initialization like this:
 ```C++
 const char *c = "92804912830912830128301928301928309182409832094281029381912038192";
 BigInteger d(c, strlen(c));
