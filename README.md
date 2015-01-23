@@ -8,8 +8,8 @@ BigInteger a = 0;
 for (int i = 1; i <= n; i++)
 {
 	BigInteger b = i;
-	b = b * b;
-	a = a + b;
+	b *= b;
+	a += b;
 	std::cout << a << std::endl;
 }
 ```
