@@ -1,7 +1,7 @@
 #include "big_integer.h"
 #include <iomanip>
 
-BigInteger BigInteger::operator+(const BigInteger &a)
+BigInteger BigInteger::operator+(const BigInteger &a) const
 {
 	BigInteger result;
 	int add_in = 0;
@@ -18,7 +18,7 @@ BigInteger BigInteger::operator+(const BigInteger &a)
 	return result;
 }
 
-BigInteger BigInteger::operator*(const BigInteger &a)
+BigInteger BigInteger::operator*(const BigInteger &a) const
 {
 	BigInteger result;
 	result.digits.assign(digits.size() + a.digits.size() + 1, 0);
@@ -35,6 +35,56 @@ BigInteger BigInteger::operator*(const BigInteger &a)
 	while (result.digits[result.digits.size() - 1] == 0)
 		result.digits.pop_back();
 	return result;
+}
+
+BigInteger BigInteger::operator+(long long i) const
+{
+	return *this + BigInteger(i);
+}
+
+BigInteger BigInteger::operator*(long long i) const
+{
+	return *this * BigInteger(i);
+}
+
+BigInteger& BigInteger::operator=(long long i)
+{
+	digits = BigInteger(i).digits;
+	return *this;
+}
+
+BigInteger& BigInteger::operator=(const BigInteger &a)
+{
+	digits = a.digits;
+	return *this;
+}
+
+BigInteger& BigInteger::operator+=(const BigInteger &a)
+{
+	BigInteger result = *this + a;
+	digits = result.digits;
+	return *this;
+}
+
+BigInteger& BigInteger::operator+=(long long i)
+{
+	BigInteger result = *this + BigInteger(i);
+	digits = result.digits;
+	return *this;
+}
+
+BigInteger& BigInteger::operator*=(const BigInteger &a)
+{
+	BigInteger result = *this * a;
+	digits = result.digits;
+	return *this;
+}
+
+BigInteger& BigInteger::operator*=(long long i)
+{
+	BigInteger result = *this * BigInteger(i);
+	digits = result.digits;
+	return *this;
 }
 
 std::ostream& operator<<(std::ostream &out, const BigInteger &a)
